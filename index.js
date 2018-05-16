@@ -43,14 +43,18 @@
     CreateDiv.prototype.init = function(options) {
         this.$el = document.querySelector(options.el)
         extend(this.settings, options)
-
-        this.$el.onscroll = () => {
-            this.bind()
-        }
+        this.bind(this.$el)
     }
 
-    CreateDiv.prototype.bind = function() {
+    CreateDiv.prototype.run = function() {
+        console.log('running...')
+    }
 
+    CreateDiv.prototype.bind = function(dom) {
+        dom.onscroll = function() {
+            console.log('running...')
+        }
+        dom.addEventListener('scroll', this.run, false)
     }
 
     CreateDiv.prototype.unbind = function() {
@@ -69,6 +73,6 @@
 let Up_one = new UpLoad({
     el: '#oUl',
     trigger: function() {
-        
+        console.log(1)
     }
 });
